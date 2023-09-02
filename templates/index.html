@@ -13,7 +13,7 @@
         }
 
         .container {
-            max-width: 400px;
+            max-width: 700px;
             margin: 0 auto;
             padding: 20px;
             background-color: #fff;
@@ -87,6 +87,33 @@
             text-decoration: none;
             color: rgb(232, 4, 4);
         }
+        .task-priority{
+            padding-right: 110px;
+        }
+        .priority-number{
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+        .date{
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+        .task-text{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .task-date{
+            padding-right: 40px;
+        }
 </style>
 <body>
     <div class="container">
@@ -94,19 +121,28 @@
         <form method="POST" >
             {% csrf_token%}
             <input type="text" name="title" id="taskInput" class="task-input" placeholder="Add a new task...">
+            <input type="text" class="priority-number" name="priority" placeholder="Enter the priority of your task...">
+            <input type="date" class="date" name="date" placeholder="Enter your task date..." >
             <button onclick="addTask()" class="add-button">Add</button>
         </form>
 
         <ul class="task-list" id="taskList">
             <!-- Tasks will be added here dynamically -->
-            {% for todo in todos reversed%}
-                <div class="liContain">
-                    <span class="task-text">{{todo.title |title}}</span>
-                    <span class="task-delete" onclick="deleteTask(this)"><a class="deTitle" href="delete/{{todo.id}}">Delete</a></span>
-                </div>
+            {% for todo in todos %}
+                {% if todo.title%}
+                    <div class="liContain">
+                        <span class="task-text">{{todo.title |title}}</span>
+                        <span class="task-priority">Priority: {{ todo.priority }}</span>
+                        <span class="task-date">{{ todo.due_date }}</span>
+                        <span class="task-delete" onclick="deleteTask(this)"><a class="deTitle" href="delete/{{todo.id}}">Delete</a></span>
+                    </div>
+                {% endif%}
             {% endfor%}
         </ul>
     </div>
+    
 
 </body>
+
+
 </html>
