@@ -1,0 +1,16 @@
+{% extends 'shared/shared.html' %}
+{% load static%}
+{% block css_file%}
+    <link rel="stylesheet" href="{% static 'css/register_completed.css' %}">
+
+{% endblock%}
+
+{% block body%}
+<div class="register-completed">
+    <h2>Rsgistrations Completed</h2>
+    <p>You have successfully registered.</p>
+    <div clss="main-leader">
+        <a href="{% url 'todo:index' %}" class="main-page-btn">Go to Main Page</a>
+    </div>
+</div>
+{% endblock%}

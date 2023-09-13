@@ -1,0 +1,16 @@
+{% extends 'shared/shared.html' %}
+{% load static%}
+{% block css_file%}
+    <link rel="stylesheet" href="{% static 'css/login_completed.css' %}">
+
+{% endblock%}
+
+{% block body%}
+<div class="login-completed">
+    <h2>Login Completed</h2>
+    <p>You have successfully logged in.</p>
+    <div clss="main-leader">
+        <a href="{% url 'todo:index' %}" class="main-page-btn">Go to Main Page</a>
+    </div>
+</div>
+{% endblock%}
